@@ -1,0 +1,25 @@
+---
+# tasks file for provision-node
+- name: Update repositories cache and install packages
+  apt:
+    name: "{{item}}"
+    update_cache: yes
+  with_items:
+    - puppet
+- name:
+  copy:
+    dest: /etc/resolv.conf
+    src: files/resolv.conf
+  with_items:
+
+- name: copy puppet config
+  copy:
+    src: files/puppet.conf
+    dest: /etc/puppet/puppet.conf
+- name: change hostname
+  hostname:
+    name: node
+- name: "edit hosts file with fqdn"
+  lineinfile:
+    path: /etc/hosts
+    line: "172.23.236.20 node.cluster.test node"
