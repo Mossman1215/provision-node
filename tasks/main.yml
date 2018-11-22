@@ -10,8 +10,6 @@
   copy:
     dest: /etc/resolv.conf
     src: files/resolv.conf
-  with_items:
-
 - name: copy puppet config
   copy:
     src: files/puppet.conf
